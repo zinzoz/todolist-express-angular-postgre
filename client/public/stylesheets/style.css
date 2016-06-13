@@ -10,6 +10,13 @@
 }
 
 
+.filtermenu{
+  float: left;
+  margin-top: 10px;
+}
+.filtermenu a{
+  text-decoration: none;
+}
 
 html { font-size: 100%; }
 
@@ -225,7 +232,7 @@ button {
   font-size: 10px;
   font-weight: bold;
   text-transform: uppercase;
-  
+
 }
 
 

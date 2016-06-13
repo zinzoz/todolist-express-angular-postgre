@@ -10,7 +10,7 @@ app.controller('taskController', function($scope) {
 
     $scope.realItem = (localStorage.getItem('realItems')!==null) ?
     JSON.parse($scope.saved) : [ {description: "ทำไมคุณยังไม่เพิ่มงาน?", date: $scope.today, complete: false}];
-    localStorage.setItem('realItems', JSON.stringify($scope.realItem));
+    localStorage.setItem('realItems', JSON.stringify($scope.taskItem));
 
 
 
@@ -60,26 +60,13 @@ app.controller('taskController', function($scope) {
     };
     $scope.deleteTask = function () {
         var completedTask = $scope.realItem;
-        $scope.realItem = [];
-        angular.forEach(completedTask, function (taskItem) {
-            if (!taskItem.complete) {
-                $scope.realItem.push(taskItem);
-            }
-        });
-
-
-        localStorage.setItem('realItems', JSON.stringify($scope.realItem));
-
-
-        var completedTask = $scope.taskItem;
         $scope.taskItem = [];
         angular.forEach(completedTask, function (taskItem) {
             if (!taskItem.complete) {
                 $scope.taskItem.push(taskItem);
             }
         });
-        localStorage.setItem('taskItems', JSON.stringify($scope.taskItem));
-
+        localStorage.setItem('realItems', JSON.stringify($scope.taskItem));
 
 
     };
@@ -88,21 +75,17 @@ app.controller('taskController', function($scope) {
 
     $scope.save = function () {
         localStorage.setItem('realItems', JSON.stringify($scope.realItem));
-        localStorage.setItem('taskItems', JSON.stringify($scope.taskItem));
         //localStorage.setItem('realItems', JSON.stringify($scope.realItem));
 
     }
 
 
     $scope.allTask = function () {
-      var allTask = $scope.realItem;
-      $scope.taskItem = [];
-      angular.forEach(allTask, function (taskItem) {
+        var allTask = $scope.realItem;
 
-              $scope.taskItem.push(taskItem);
 
-      });
-      localStorage.setItem('taskItems', JSON.stringify($scope.taskItem));
+        localStorage.setItem('taskItems', JSON.stringify(allTask));
+        localStorage.setItem('realItems', JSON.stringify(allTask));
     };
 
     $scope.incompletedTask = function () {
@@ -153,4 +136,4 @@ app.controller('taskController', function($scope) {
 //
 //     return filtered;
 //   };
-//});
+});
